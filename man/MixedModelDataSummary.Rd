@@ -20,5 +20,5 @@ MixedModelDataSummary(Data = , DV = 'DV',Cond = 'CondA', Group = 'subj')
 }
 \examples{
 ## Example :
-MixedModelDataSummary(Data = DemoData, DV = 'DV', Cond = 'CondA, CondB', Group = 'subj')
+MixedModelDataSummary(Data = DemoData_Continuous_2_2_2, DV = 'DV', Cond = 'CondA, CondB', Group = 'subj')
 }
