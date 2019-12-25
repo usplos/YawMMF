@@ -31,6 +31,6 @@ You can use `MixedModelOpt()` to optimize your model.
 
 You can use `MixedModelPower()` to perform the power analysis.
 
-You can use `MixedModelOptPower()` to optimize you model and then perform the power analysis at one time.
+You can use `MixedModelOptPower()` to optimize your model and then perform the power analysis at one time.
 
-You can use `contr.simple()` to set the simple contrast
+You can use `contr.simple()` to help set the contrast matrix of factor variables as simple contrast.
