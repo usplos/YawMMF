@@ -33,7 +33,7 @@ MixedModelOptPower(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
 }
 \examples{
 ## Example :
-MixedModelOptPower(Data = DemoData, Fix_Factor = 'CondA, CondB', Re_Factor = 'subj, item', Methods = 't', Along = 'subj', maxNumber = 50)
+MixedModelOptPower(Data = DemoData_Continuous_2_2_2, Fix_Factor = 'CondA, CondB', Re_Factor = 'subj, item', Methods = 't', Along = 'subj', maxNumber = 50)
 }
 \seealso{
 \code{\link{MixedModelPower}}, \code{\link{MixedModelOpt}}
