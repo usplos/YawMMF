@@ -26,7 +26,7 @@ MixedModelOpt(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
 }
 \examples{
 ## Example :
-MixedModelOpt(Data = DemoData_Continuous_2_2_2, Fix_Factor = 'CondA, CondB', Re_Factor = 'subj, item')
+MixedModelOpt(Data = DemoData, Fix_Factor = 'CondA, CondB', Re_Factor = 'subj, item')
 }
 \seealso{
 \code{\link{MixedModelDummy}}, \code{\link{MixedModelOptPower}}
