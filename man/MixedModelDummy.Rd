@@ -19,7 +19,7 @@ MixedModelDummy(Data = , Fix_Factor = ,MatrixDesign = )
 }
 \examples{
 ## Example :
-MixedModelDummy(Data = DemoData_Continuous_2_2_2, Fix_Factor = 'CondA, CondB', MatrixDesign = '*')
+MixedModelDummy(Data = DemoData, Fix_Factor = 'CondA, CondB', MatrixDesign = '*')
 }
 \seealso{
 \code{\link{MixedModelOpt}}, \code{\link{MixedModelOptPower}}
