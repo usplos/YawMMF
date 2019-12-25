@@ -1,5 +1,5 @@
 # YawMMF
-Effective Functions for Mixed Model
+Effective **M**ixed **M**odel **F**unctions 
 
 
 ![](https://img.shields.io/badge/R-package-success)
@@ -12,7 +12,7 @@ Effective Functions for Mixed Model
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/Psych.ZhangGuangyao/ "Personal profile on Zhihu.com")
 
 ## Citation
-Zhang, G. -Y. (2020). YawMMF: Effective Functions for Mixed Model. Retrieved from https://github.com/usplos/YawMMF
+Zhang, G. -Y. (2020). YawMMF: Effective Mixed Model Functions. Retrieved from https://github.com/usplos/YawMMF
 
 ## Install
 ```r
