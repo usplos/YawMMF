@@ -1,5 +1,5 @@
 # YawMMF
-Effective Functions for mixed model
+Effective Functions for Mixed Model
 
 
 ![](https://img.shields.io/badge/R-package-success)
@@ -12,7 +12,7 @@ Effective Functions for mixed model
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/Psych.ZhangGuangyao/ "Personal profile on Zhihu.com")
 
 ## Citation
-Zhang, G. -Y. (2020). YawMMF: Effective Functions for mixed model. Retrieved from https://github.com/usplos/YawMMF
+Zhang, G. -Y. (2020). YawMMF: Effective Functions for Mixed Model. Retrieved from https://github.com/usplos/YawMMF
 
 ## Install
 ```r
@@ -20,12 +20,12 @@ if(!require(devtools)) install.packages("devtools")
 devtools::install_github("usplos/YawMMF")
 ```
 
-## Brief introductoin
-This package offer convenient and effective functions for mixed model.
+## Brief introduction
+This package offers convenient and effective functions for mixed model.
 
-You can use `MixedModelDataSummary()` to summary your data.
+You can use `MixedModelDataSummary()` to summarise your data.
 
-You can use `MixedModelDummy()` to generate dummy variables for factorized variables.
+You can use `MixedModelDummy()` to generate dummy variables for factor variables.
 
 You can use `MixedModelOpt()` to optimize your model.
 
