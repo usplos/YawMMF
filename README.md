@@ -12,7 +12,7 @@ Effective Functions for mixed model
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/Psych.ZhangGuangyao/ "Personal profile on Zhihu.com")
 
 ## Citation
-Guangyao, Zhang (2020). YawMMF: Effective Functions for mixed model. Retrieved from https://github.com/usplos/YawMMF
+Zhang, G. -Y. (2020). YawMMF: Effective Functions for mixed model. Retrieved from https://github.com/usplos/YawMMF
 
 ## Install
 ```r
