@@ -19,3 +19,18 @@ Guangyao, Zhang (2020). YawMMF: Effective Functions for mixed model. Retrieved f
 if(!require(devtools)) install.packages("devtools")
 devtools::install_github("psychbruce/bruceR")
 ```
+
+## Brief introductoin
+This package offer convenient and effective functions for mixed model.
+
+You can use `MixedModelDataSummary()` to summary your data.
+
+You can use `MixedModelDummy()` to generate dummy variables for factorized variables.
+
+You can use `MixedModelOpt()` to optimize your model.
+
+You can use `MixedModelPower()` to perform the power analysis.
+
+You can use `MixedModelOptPower()` to optimize you model and then perform the power analysis at one time.
+
+You can use `contr.simple()` to set the simple contrast
