@@ -17,7 +17,7 @@ Zhang, G. -Y. (2020). YawMMF: Effective Functions for mixed model. Retrieved fro
 ## Install
 ```r
 if(!require(devtools)) install.packages("devtools")
-devtools::install_github("psychbruce/bruceR")
+devtools::install_github("usplos/YawMMF")
 ```
 
 ## Brief introductoin
