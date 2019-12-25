@@ -1,0 +1,27 @@
+Package: YawMMF
+Type: Package
+Title: Effective functions for Generalized Mixed Model
+Version: 0.1.0
+Authors@R: c(
+  person("Guangyao", "Zhang", email="zhanggunagyao@psych.ac.cn", role=c("aut", "cre"))
+  )
+Author: Guangyao Zhang
+Maintainer: Guangyao Zhang <zhanggunagyao@psych.ac.cn>
+Description: This package offer convenient and effective functions for mixed model.
+    You can use MixedModelDataSummary() to summary your data.
+    You can use MixedModelDummy() to generate dummy variables for factorized variables.
+    You can use MixedModelOpt() to optimize your model.
+    You can use MixedModelPower() to perform the power analysis.
+    You can use MixedModelOptPower() to optimize you model and then perform the power analysis at one time.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.6.1),
+         rio,
+         tidyverse,
+         simr,
+         lmerTest
+Imports: tidyverse,
+         rio,
+         simr,
+         lmerTest
