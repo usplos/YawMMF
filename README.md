@@ -20,7 +20,7 @@ if(!require(devtools)) install.packages("devtools")
 devtools::install_github("usplos/YawMMF")
 ```
 
-## Brief introduction
+## Brief introduction 
 This package offers convenient and effective functions for mixed model.
 
 `MixedModelDataSummary()` : to summarise your data.
@@ -38,3 +38,7 @@ This package offers convenient and effective functions for mixed model.
 `CorrPlot()` : to draw correlation-matrix plot for multiple correlations 
 
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
+
+## Functions that have not been created
+
+...
