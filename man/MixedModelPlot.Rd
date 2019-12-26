@@ -76,5 +76,4 @@ MixedModelPlot(Data = DemoData,
 
 }
 
-\code{\link{MixedModelOptPower}}
 }
