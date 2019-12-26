@@ -6,7 +6,7 @@
 To plot for experimental data in which the indepdent variables are factor variables.
 }
 \usage{
-Omnipotent(Data = NULL, DV, SE = NULL, Pred, Modx = NULL, Mod2 = NULL,
+MixedModelPlot(Data = NULL, DV, SE = NULL, Pred, Modx = NULL, Mod2 = NULL,
             Geom = 'bar',
             Barwidth = 0.5, Fill=NULL,DodgeWidth = 0.5,
             Color = NULL,
