@@ -23,16 +23,18 @@ devtools::install_github("usplos/YawMMF")
 ## Brief introduction
 This package offers convenient and effective functions for mixed model.
 
-You can use `MixedModelDataSummary()` to summarise your data.
+`MixedModelDataSummary()` : to summarise your data.
 
-You can use `MixedModelDummy()` to generate dummy variables for factor variables.
+`MixedModelDummy()` : to generate dummy variables for factor variables.
 
-You can use `MixedModelOpt()` to optimize your model.
+`MixedModelOpt()` : to optimize your model.
 
-You can use `MixedModelPower()` to perform the power analysis.
+`MixedModelPower()` : to perform the power analysis.
 
-You can use `MixedModelOptPower()` to optimize your model and then perform the power analysis at one time.
+`MixedModelOptPower()` : to optimize your model and then perform the power analysis at one time.
 
-You can use `contr.simple()` to set the contrast matrix of factor variables as simple contrast.
+`MixedModelPlot()` : to draw bar plot, interaction line plot, violin plus box plot, violin plus rawdata plot
 
-You can use `MixedModelPlot()` to draw bar plot, interaction line plot, violin plus box plot, violin plus rawdata plot
+`CorrPlot()` : to draw correlation-matrix plot for multiple correlations 
+
+`contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
