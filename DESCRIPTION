@@ -20,8 +20,12 @@ Depends: R (>= 3.6.1),
          rio,
          tidyverse,
          simr,
-         lmerTest
+         lmerTest,
+         ggedit,
+         ggbeeswarm
 Imports: tidyverse,
          rio,
          simr,
-         lmerTest
+         lmerTest,
+         ggedit,
+         ggbeeswarm
