@@ -104,7 +104,7 @@ MixedModelOptPower = function(
   }
 
   ##### power value #####
-  cat('The optimized formula are:\n\n');cat(FormulaNew);
+  cat('The optimized formula are:\n\n');cat(ifelse(NumLoop == 0, Formula, FormulaNew));
   cat('\n\nDo you wang to change the fixed factor?\n',
       '1: change\n',
       '0: not change')
@@ -195,7 +195,9 @@ MixedModelOptPower = function(
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt),
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt)),
                   PowerModelOpt = PowerList))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
@@ -223,7 +225,9 @@ MixedModelOptPower = function(
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt),
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt)),
                   PowerModelOpt = PowerList))
     }
 
@@ -244,7 +248,9 @@ MixedModelOptPower = function(
                   rePCA_All = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt),
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt)),
                   PowerModelOpt = PowerList))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
@@ -261,7 +267,9 @@ MixedModelOptPower = function(
                   rePCA_All = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt),
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt)),
                   PowerModelOpt = PowerList))
     }
   }
