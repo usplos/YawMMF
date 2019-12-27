@@ -33,7 +33,10 @@ This package offers convenient and effective functions for mixed model.
 
 `MixedModelOptPower()` : to optimize your model and then perform the power analysis at one time.
 
-`MixedModelPlot()` : to draw bar plot, interaction line plot, violin plus box plot, violin plus rawdata plot
+`MixedModelPlot()` : to draw bar plot, interaction line plot, violin plus box plot, violin plus rawdata plot.
+
+`MixedModelEmm()` : to compute estimated marginal means (EMMs) for specified factors in a mixed model, 
+and comparisons or contrasts among them.
 
 `CorrPlot()` : to draw correlation-matrix plot for multiple correlations 
 
