@@ -36,7 +36,7 @@ This package offers convenient and effective functions for mixed model.
 `MixedModelPlot()` : to draw bar plot, interaction line plot, violin plus box plot, violin plus rawdata plot.
 
 `MixedModelEmm()` : to compute estimated marginal means (EMMs) for specified factors in a mixed model, 
-and comparisons or contrasts among them.
+and comparisons or contrasts among them. (This function is still maturing)
 
 `CorrPlot()` : to draw correlation-matrix plot for multiple correlations 
 
