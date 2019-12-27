@@ -22,10 +22,12 @@ Depends: R (>= 3.6.1),
          simr,
          lmerTest,
          ggedit,
+         car,
          ggbeeswarm
 Imports: tidyverse,
          rio,
          simr,
          lmerTest,
          ggedit,
+         car,
          ggbeeswarm
