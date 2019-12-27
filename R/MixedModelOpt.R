@@ -124,7 +124,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt)))
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt))))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
           Formula,'\n\n')
@@ -149,7 +151,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt)))
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt))))
     }
 
 
@@ -167,7 +171,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   rePCA_All = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt)))
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt))))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
           Formula,'\n\n')
@@ -181,7 +187,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   rePCA_All = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = anova(ModelOpt)))
+                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
+                                          anova(ModelOpt),
+                                          car::Anova(ModelOpt))))
     }
   }
 }
