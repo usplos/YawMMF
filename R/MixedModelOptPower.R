@@ -197,7 +197,7 @@ MixedModelOptPower = function(
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt)),
+                                          car::Anova(ModelOpt,type = 3)),
                   PowerModelOpt = PowerList))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
@@ -227,7 +227,7 @@ MixedModelOptPower = function(
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt)),
+                                          car::Anova(ModelOpt,type = 3)),
                   PowerModelOpt = PowerList))
     }
 
@@ -250,7 +250,7 @@ MixedModelOptPower = function(
                   Summary_ModelAll = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt)),
+                                          car::Anova(ModelOpt,type = 3)),
                   PowerModelOpt = PowerList))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
@@ -269,7 +269,7 @@ MixedModelOptPower = function(
                   Summary_ModelAll = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt)),
+                                          car::Anova(ModelOpt,type = 3)),
                   PowerModelOpt = PowerList))
     }
   }
