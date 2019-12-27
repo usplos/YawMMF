@@ -4,10 +4,6 @@ MixedModelOptPower = function(
   Methods = 't', Nsim = 500,
   Along = NULL, maxNumber = NULL, Breaks = NULL
 ){
-  if(!require(tidyverse)) install.packages('tidyverse')
-  if(!require(lmerTest)) install.packages('lmerTest')
-  if(!require(simr)) install.packages('simr')
-
   ##### Model optimize #####
   if(is.null(FormulaManual)){
     Fix_Factor = Fix_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
