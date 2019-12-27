@@ -126,7 +126,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt))))
+                                          car::Anova(ModelOpt,type = 3))))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
           Formula,'\n\n')
@@ -153,7 +153,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt))))
+                                          car::Anova(ModelOpt,type = 3))))
     }
 
 
@@ -173,7 +173,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Summary_ModelAll = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt))))
+                                          car::Anova(ModelOpt,type = 3))))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
           Formula,'\n\n')
@@ -189,7 +189,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Summary_ModelAll = summary(ModelOpt),
                   ANOVA_ModelOpt = ifelse(Family == 'gaussian',
                                           anova(ModelOpt),
-                                          car::Anova(ModelOpt))))
+                                          car::Anova(ModelOpt,type = 3))))
     }
   }
 }
