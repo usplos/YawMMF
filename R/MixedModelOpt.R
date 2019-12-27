@@ -1,10 +1,6 @@
 MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                          Family = 'gaussian', criterionPCA = 0.01, MatrixDesign = '*', REML = F){
 
-
-  if(!require(tidyverse)) install.packages('tidyverse')
-  if(!require(lmerTest)) install.packages('lmerTest')
-
   if(is.null(FormulaManual)){
     Fix_Factor = Fix_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
     Re_Factor = Re_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
