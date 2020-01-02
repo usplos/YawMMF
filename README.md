@@ -29,7 +29,7 @@ Warning in install.packages :
   package ‘YawMMF’ is not available (for R version 3.6.1)
 ```
 
-`YawMMF` package should be installed from Github instead [`CRAN`](https://cran.r-project.org/web/packages/index.html)
+`YawMMF` package should be installed from Github instead of [`CRAN`](https://cran.r-project.org/web/packages/index.html)
 
 #### Solution
 
@@ -77,7 +77,7 @@ copy.packages.between.libraries(ask=TRUE)
 ## Brief introduction 
 This package offers convenient and effective functions for mixed model.
 
-`MixedModelDataSummary()` : to summarise your data.
+`MixedModelDataSummary()` : to summarise your data. (This function is still maturing)
 
 `MixedModelDummy()` : to generate dummy variables for factor variables.
 
