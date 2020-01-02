@@ -92,7 +92,7 @@ This package offers convenient and effective functions for mixed model.
 `MixedModelEmm()` : to compute estimated marginal means (EMMs) for specified factors in a mixed model, 
 and comparisons or contrasts among them. (This function is still maturing)
 
-`CorrPlot()` : to draw correlation-matrix plot for multiple correlations 
+`CorrPlot()` : to draw correlation-matrix plot for multiple-variable correlations 
 
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
