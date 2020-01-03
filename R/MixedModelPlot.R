@@ -5,7 +5,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                           ErrorBarWidth = 0.2, ErrorBarColor = 'black',
                           ViolinWidth = 0.5, BoxWidth = 0.1, ViolindataBandWidth = 0.5, ViolindataAlpha = 0.5,
                           Xlab = NULL, Ylab = NULL, Title = NULL, Legend = NULL,
-                          Edit = F, Fun = F){
+                          Edit = F, Fun = T){
   if(!isTRUE(Fun)){
     if(is.null(Object)){
       if(Geom == 'bar'){
