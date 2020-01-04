@@ -24,7 +24,9 @@ Depends: R (>= 3.6.1),
          emmeans,
          ggedit,
          car,
-         ggbeeswarm
+         ggbeeswarm,
+         moments,
+         psych
 Imports: tidyverse,
          rio,
          simr,
@@ -32,4 +34,6 @@ Imports: tidyverse,
          emmeans,
          ggedit,
          car,
-         ggbeeswarm
+         ggbeeswarm,
+         moments,
+         psych
