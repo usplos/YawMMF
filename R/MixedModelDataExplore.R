@@ -1,8 +1,8 @@
 MixedModelDataExplore = function(Data, DV, DVLog = F, Cond, DeleteCriterion = c(80,1000)){
   if(!is.null(DeleteCriterion)){
     TrialRaw = eval(parse(text = paste0('with(Data, tapply(',DV,', list(',Cond,')',',length))')))
-    DataNew = eval(parse(text = paste0('subset(Data,',DV,' > ', DeleteCriterion[[1]],' & ',DV,' < ', DeleteCriterion[[2]],')')))
-    TrialNew = eval(parse(text = paste0('with(DataNew, tapply(',DV,', list(',Cond,')',',length))')))
+    Data = eval(parse(text = paste0('subset(Data,',DV,' > ', DeleteCriterion[[1]],' & ',DV,' < ', DeleteCriterion[[2]],')')))
+    TrialNew = eval(parse(text = paste0('with(Data, tapply(',DV,', list(',Cond,')',',length))')))
   }
 
   Cond2 = Cond %>% gsub(pattern = ' ',replacement = '',x = .) %>%
@@ -39,6 +39,6 @@ MixedModelDataExplore = function(Data, DV, DVLog = F, Cond, DeleteCriterion = c(
   cat('There is one pdf file named ', paste0('\'',DV,'_Explore.pdf\''), ' in your working space')
 
   if(!is.null(DeleteCriterion)){
-    return(DataNew)
+    return(Data)
   }
 }
