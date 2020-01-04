@@ -82,11 +82,15 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
         }
       }else if(Geom == 'violin1'){
         p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
+                                     '))')))
+        p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
                                      ifelse(!is.null(Modx),
                                             paste0(', fill = ',Modx,'))'),
                                             '))'))))
-        p = eval(parse(text = paste0('p + geom_violin(trim = F,position = position_dodge(DodgeWidth), width = ViolinWidth)')))
-        p = eval(parse(text = paste0('p + geom_boxplot(width = BoxWidth, position = position_dodge(DodgeWidth))')))
+        p = eval(parse(text = paste0('p + geom_boxplot(width = BoxWidth, position = position_dodge(DodgeWidth),show.legend = F,aes(',
+                                     ifelse(!is.null(Modx),
+                                            paste0(', color = ',Modx,'))'),
+                                            '))'))))
 
         if(!is.null(Mod2)){
           p = eval(parse(text = paste0('p + facet_grid(~',Mod2,')')))
@@ -95,6 +99,13 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
           Fill = Fill %>% gsub(pattern = ' ',replacement = '',x = .) %>%
             strsplit(x = ., split = ',',fixed = T) %>% unlist()
           p = p + scale_fill_manual(values = Fill)
+        }
+        if(!is.null(Color)){
+          Color = Color %>% gsub(pattern = ' ',replacement = '',x = .) %>%
+            strsplit(x = ., split = ',',fixed = T) %>% unlist()
+          p = p + scale_color_manual(values = Color)
+        }else{
+          p = p + scale_color_manual(values = rep('black', times = Data[[Modx]] %>% unique() %>% length()))
         }
 
         p = p + labs(x = ifelse(!is.null(Xlab),
@@ -240,11 +251,15 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
           }
         }else if(Geom == 'violin1'){
           p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
+                                       '))')))
+          p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
                                        ifelse(!is.null(Modx),
                                               paste0(', fill = ',Modx,'))'),
                                               '))'))))
-          p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth)')))
-          p = eval(parse(text = paste0('p + geom_boxplot(width = BoxWidth, position = position_dodge(DodgeWidth))')))
+          p = eval(parse(text = paste0('p + geom_boxplot(width = BoxWidth, position = position_dodge(DodgeWidth),show.legend = F,aes(',
+                                       ifelse(!is.null(Modx),
+                                              paste0(', color = ',Modx,'))'),
+                                              '))'))))
 
           if(!is.null(Mod2)){
             p = eval(parse(text = paste0('p + facet_grid(~',Mod2,')')))
@@ -253,6 +268,13 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
             Fill = Fill %>% gsub(pattern = ' ',replacement = '',x = .) %>%
               strsplit(x = ., split = ',',fixed = T) %>% unlist()
             p = p + scale_fill_manual(values = Fill)
+          }
+          if(!is.null(Color)){
+            Color = Color %>% gsub(pattern = ' ',replacement = '',x = .) %>%
+              strsplit(x = ., split = ',',fixed = T) %>% unlist()
+            p = p + scale_color_manual(values = Color)
+          }else{
+            p = p + scale_color_manual(values = rep('black', times = Data[[Modx]] %>% unique() %>% length()))
           }
 
           p = p + labs(x = ifelse(!is.null(Xlab),
