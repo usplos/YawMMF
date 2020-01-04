@@ -5,7 +5,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                           ErrorBarWidth = 0.2, ErrorBarColor = 'black',
                           ViolinWidth = 0.5, BoxWidth = 0.1, ViolindataBandWidth = 0.5, ViolindataAlpha = 0.5,
                           Xlab = NULL, Ylab = NULL, Title = NULL, Legend = NULL,
-                          Edit = F, Fun = T){
+                          Edit = F, Fun = F){
   if(!isTRUE(Fun)){
     if(is.null(Object)){
       if(Geom == 'bar'){
@@ -85,7 +85,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                      ifelse(!is.null(Modx),
                                             paste0(', fill = ',Modx,'))'),
                                             '))'))))
-        p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth)')))
+        p = eval(parse(text = paste0('p + geom_violin(trim = F,position = position_dodge(DodgeWidth), width = ViolinWidth)')))
         p = eval(parse(text = paste0('p + geom_boxplot(width = BoxWidth, position = position_dodge(DodgeWidth))')))
 
         if(!is.null(Mod2)){
@@ -118,7 +118,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                      ifelse(!is.null(Modx),
                                             paste0(', color = ',Modx,'))'),
                                             '))'))))
-        p = eval(parse(text = paste0('p + geom_violin(alpha = 0.2, position = position_dodge(DodgeWidth), width = ViolinWidth)')))
+        p = eval(parse(text = paste0('p + geom_violin(trim = F,alpha = 0.2, position = position_dodge(DodgeWidth), width = ViolinWidth)')))
         p = p + geom_quasirandom(dodge.width = DodgeWidth, bandwidth = ViolindataBandWidth, alpha = ViolindataAlpha)
 
         if(!is.null(Mod2)){
