@@ -1,5 +1,6 @@
 MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
-                         Family = 'gaussian', criterionPCA = 0.01, MatrixDesign = '*', REML = F){
+                         Family = 'gaussian', criterionPCA = 0.01, MatrixDesign = '*'){
+
 
   if(is.null(FormulaManual)){
     Fix_Factor = Fix_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
@@ -20,7 +21,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
     IVName = gsub(pattern = ':',replacement = '_',x = colnames(mmff)[2:ncol(mmff)]) %>%
       substr(x = ., start = 1, stop = nchar(.))
     Data[IVName] = mmff[,2:ncol(mmff)]
-    RandomSlope = paste('(1 + ',paste(IVName,collapse = ' + '),'||',Re_Factor,')',sep = '')
+    RandomSlope = paste('(1 + ',paste(IVName,collapse = ' + '),'|',Re_Factor,')',sep = '')
     Formula = paste0(DV,' ~ 1 + ', paste(IVName,collapse = ' + '),' + ',
                      paste(RandomSlope,collapse = ' + '))
   }else{
@@ -29,10 +30,10 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
 
 
   if(Family == 'gaussian'){
-    ModelAll = eval(parse(text = paste0('lmer(formula = ',Formula,', data = Data, REML = REML,',
+    ModelAll = eval(parse(text = paste0('lmer(formula = ',Formula,', data = Data,',
                                         'control = lmerControl(optimizer = \'bobyqa\'))')))
   }else{
-    ModelAll = eval(parse(text = paste0('glmer(formula = ',Formula,', data = Data, REML = REML,',
+    ModelAll = eval(parse(text = paste0('glmer(formula = ',Formula,', data = Data,',
                                         'control = glmerControl(optimizer = \'bobyqa\'), family = Family)')))
   }
 
@@ -47,7 +48,34 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
     k = k + ifelse(length(PCA_All[[ii]]$importance[2,]) > 1, sum(PCA_All[[ii]]$importance[2,] < criterionPCA),0)
   }
 
-  ModelOpt = ModelAll
+  ZPCModel = 0
+  if(k > 0 & is.null(FormulaManual)){
+    RandomSlope = paste('(1 + ',paste(IVName,collapse = ' + '),'||',Re_Factor,')',sep = '')
+    FormulaNew = paste0(DV,' ~ 1 + ', paste(IVName,collapse = ' + '),' + ',
+                        paste(RandomSlope,collapse = ' + '))
+
+    if(Family == 'gaussian'){
+      ModelAll2 = eval(parse(text = paste0('lmer(formula = ',FormulaNew,', data = Data,',
+                                          'control = lmerControl(optimizer = \'bobyqa\'))')))
+    }else{
+      ModelAll2 = eval(parse(text = paste0('glmer(formula = ',FormulaNew,', data = Data,',
+                                          'control = glmerControl(optimizer = \'bobyqa\'), family = Family)')))
+    }
+
+    PCA_All = summary(rePCA(ModelAll2))
+    k = 0;
+    for (ii in 1:length(PCA_All)) {
+      k = k + ifelse(length(PCA_All[[ii]]$importance[2,]) > 1, sum(PCA_All[[ii]]$importance[2,] < criterionPCA),0)
+    }
+    ZPCModel = 1
+  }
+
+  if(ZPCModel == 0){
+    ModelOpt = ModelAll
+  }else{
+    ModelOpt = ModelAll2
+  }
+
   NumLoop = 0
   while (k != 0) {
     VarM = VarCorr(ModelOpt)
@@ -77,10 +105,10 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
 
 
     if(Family == 'gaussian'){
-      ModelOpt = eval(parse(text = paste0('lmer(formula = ',FormulaNew,', data = Data, REML = REML,',
+      ModelOpt = eval(parse(text = paste0('lmer(formula = ',FormulaNew,', data = Data,',
                                           'control = lmerControl(optimizer = \'bobyqa\'))')))
     }else{
-      ModelOpt = eval(parse(text = paste0('glmer(formula = ',FormulaNew,', data = Data, REML = REML,',
+      ModelOpt = eval(parse(text = paste0('glmer(formula = ',FormulaNew,', data = Data,',
                                           'control = glmerControl(optimizer = \'bobyqa\'), family = Family)')))
     }
 
@@ -120,9 +148,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
-                                          anova(ModelOpt),
-                                          car::Anova(ModelOpt,type = 3))))
+                  ANOVA_ModelOpt = Anova(ModelOpt)))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
           Formula,'\n\n')
@@ -147,9 +173,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   Model_Compare = anova(ModelAll, ModelOpt),
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
-                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
-                                          anova(ModelOpt),
-                                          car::Anova(ModelOpt,type = 3))))
+                  ANOVA_ModelOpt = Anova(ModelOpt)))
     }
 
 
@@ -167,9 +191,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
                   rePCA_All = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
-                                          anova(ModelOpt),
-                                          car::Anova(ModelOpt,type = 3))))
+                  ANOVA_ModelOpt = Anova(ModelOpt)))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
           Formula,'\n\n')
@@ -178,14 +200,12 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
       cat('\n\n')
 
       return(list(DataNew = Data,
-                  Formula_All = Formula,
-                  VarCorr_All = VarCorr(ModelOpt),
-                  rePCA_All = summary(rePCA(ModelOpt)),
+                  Formula_Giv = Formula,
+                  VarCorr_Giv = VarCorr(ModelOpt),
+                  rePCA_Giv = summary(rePCA(ModelOpt)),
                   ModelOpt = ModelOpt,
                   Summary_ModelAll = summary(ModelOpt),
-                  ANOVA_ModelOpt = ifelse(Family == 'gaussian',
-                                          anova(ModelOpt),
-                                          car::Anova(ModelOpt,type = 3))))
+                  ANOVA_ModelOpt = Anova(ModelOpt)))
     }
   }
 }
