@@ -6,7 +6,7 @@
 To plot for experimental data in which the indepdent variables are factor variables.
 }
 \usage{
-MixedModelPlot(Data = NULL, DV, SE = NULL, Pred, Modx = NULL, Mod2 = NULL,
+Omnipotent(Data = NULL, DV, SE = NULL, Pred, Modx = NULL, Mod2 = NULL,
             Geom = 'bar',
             Barwidth = 0.5, Fill=NULL,DodgeWidth = 0.5,
             Color = NULL,
@@ -32,6 +32,7 @@ MixedModelPlot(Data = NULL, DV, SE = NULL, Pred, Modx = NULL, Mod2 = NULL,
   \item{ErrorBarWidth}{Width of errorbar}
   \item{ErrorBarColor}{Color of errorbar, only useful for bar plot}
   \item{ViolinWidth}{Width of one violin bar in violin plot}
+  \item{Group}{Whether there is special group on which the mean should be calculate for violin plot, ususally the subject variable. The default value is NULL, i.e. no such group. Otherwise, set this parameter the group variable. A character variable}
   \item{BoxWidth}{Width of one box in violin plot}
   \item{ViolindataBandWidth}{Width of raw data band in violin plot}
   \item{ViolindataAlpha}{Transparency of raw data in violin plot}
@@ -70,10 +71,11 @@ MixedModelPlot(Data = DemoData,
 ## Example : Violine and Raw data
 MixedModelPlot(Data = DemoData,
                DV = 'DV',Pred = 'CondA',Modx = 'type',Mod2 = 'CondB',
-               Geom = 'violin2',Fill = gray(c(0.5, 0.8)),
+               Geom = 'violin2',Fill = gray(c(0.5, 0.8)), Group = 'subj',
                DodgeWidth = 1, ViolinWidth = 1, ViolindataBandWidth = 0.5, ViolindataAlpha = 0.6,
                Legend = 'XXX')
 
 }
 
+\code{\link{MixedModelOptPower}}
 }
