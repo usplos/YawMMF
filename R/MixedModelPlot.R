@@ -3,7 +3,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                           Barwidth = 0.5, Fill=NULL,DodgeWidth = 0.5,
                           Color = NULL,
                           ErrorBarWidth = 0.2, ErrorBarColor = 'black',
-                          ViolinWidth = 0.5, BoxWidth = 0.1, ViolindataBandWidth = 0.5, ViolindataAlpha = 0.5,
+                          ViolinWidth = 0.5, Group = NULL, BoxWidth = 0.1, ViolindataBandWidth = 0.5, ViolindataAlpha = 0.5,
                           Xlab = NULL, Ylab = NULL, Title = NULL, Legend = NULL,
                           Edit = F, Fun = T){
   if(!isTRUE(Fun)){
@@ -81,9 +81,14 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                       Legend,Modx))
         }
       }else if(Geom == 'violin1'){
+        if(!is.null(Group)){
+          Cond = paste(Pred, Modx, Mod2) %>% gsub(pattern = ' ', x = ., replacement = ', ')
+          Data = eval(parse(text = paste0('Data %>% group_by(',Group,', ',Cond, ') %>% summarise(',DV,' = mean(',DV,'))')))
+        }
+
         p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
                                      '))')))
-        p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
+        p = eval(parse(text = paste0('p + geom_violin(trim = F,position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
                                      ifelse(!is.null(Modx),
                                             paste0(', fill = ',Modx,'))'),
                                             '))'))))
@@ -122,6 +127,11 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                      Legend,Modx))
         }
       }else if(Geom == 'violin2'){
+        if(!is.null(Group)){
+          Cond = paste(Pred, Modx, Mod2) %>% gsub(pattern = ' ', x = ., replacement = ', ')
+          Data = eval(parse(text = paste0('Data %>% group_by(',Group,', ',Cond, ') %>% summarise(',DV,' = mean(',DV,'))')))
+        }
+
         p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
                                      ifelse(!is.null(Modx),
                                             paste0(', fill = ',Modx,''),
@@ -250,9 +260,14 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                         Legend,Modx))
           }
         }else if(Geom == 'violin1'){
+          if(!is.null(Group)){
+            Cond = paste(Pred, Modx, Mod2) %>% gsub(pattern = ' ', x = ., replacement = ', ')
+            Data = eval(parse(text = paste0('Data %>% group_by(',Group,', ',Cond, ') %>% summarise(',DV,' = mean(',DV,'))')))
+          }
+
           p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
                                        '))')))
-          p = eval(parse(text = paste0('p + geom_violin(position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
+          p = eval(parse(text = paste0('p + geom_violin(trim = F, position = position_dodge(DodgeWidth), width = ViolinWidth,aes(',
                                        ifelse(!is.null(Modx),
                                               paste0(', fill = ',Modx,'))'),
                                               '))'))))
@@ -291,6 +306,11 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                        Legend,Modx))
           }
         }else if(Geom == 'violin2'){
+          if(!is.null(Group)){
+            Cond = paste(Pred, Modx, Mod2) %>% gsub(pattern = ' ', x = ., replacement = ', ')
+            Data = eval(parse(text = paste0('Data %>% group_by(',Group,', ',Cond, ') %>% summarise(',DV,' = mean(',DV,'))')))
+          }
+
           p = eval(parse(text = paste0('ggplot(data = Data, aes(x = ',Pred,', y = ',DV,
                                        ifelse(!is.null(Modx),
                                               paste0(', fill = ',Modx,''),
@@ -298,7 +318,7 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                                        ifelse(!is.null(Modx),
                                               paste0(', color = ',Modx,'))'),
                                               '))'))))
-          p = eval(parse(text = paste0('p + geom_violin(alpha = 0.2, position = position_dodge(DodgeWidth), width = ViolinWidth)')))
+          p = eval(parse(text = paste0('p + geom_violin(trim = F, alpha = 0.2, position = position_dodge(DodgeWidth), width = ViolinWidth)')))
           p = p + geom_quasirandom(dodge.width = DodgeWidth, bandwidth = ViolindataBandWidth, alpha = ViolindataAlpha)
 
           if(!is.null(Mod2)){
