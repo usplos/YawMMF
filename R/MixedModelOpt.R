@@ -5,8 +5,10 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
   if(is.null(FormulaManual)){
     Fix_Factor = Fix_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
     Re_Factor = Re_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
-    Data[Fix_Factor] = lapply(Data[Fix_Factor], factor)
-    Data[Re_Factor] = lapply(Data[Re_Factor], factor)
+    if(!isTRUE(ContrastsM)){
+      Data[Fix_Factor] = lapply(Data[Fix_Factor], factor)
+      Data[Re_Factor] = lapply(Data[Re_Factor], factor)
+    }
 
     for(ff in Fix_Factor){
       if(!isTRUE(ContrastsM)){
