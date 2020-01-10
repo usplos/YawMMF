@@ -1,8 +1,12 @@
-MixedModelDummy = function(Data, Fix_Factor, MatrixDesign = '*'){
+MixedModelDummy = function(Data, Fix_Factor, MatrixDesign = '*', ContrastsM = F){
   Fix_Factor = Fix_Factor %>% gsub(pattern = ' ',replacement = '',x = .) %>% strsplit(split = ',', fixed = T) %>% unlist()
-  Data[Fix_Factor] = lapply(Data[Fix_Factor], factor)
+  if(!isTRUE(ContrastsM)){
+    Data[Fix_Factor] = lapply(Data[Fix_Factor], factor)
+  }
   for(ff in Fix_Factor){
-    contrasts(Data[[ff]]) = contr.simple(length(levels(Data[[ff]])))
+    if(!isTRUE(ContrastsM)){
+      contrasts(Data[[ff]]) = contr.simple(length(levels(Data[[ff]])))
+    }
   }
 
   eval(parse(text = paste0('mmff = model.matrix(~ ',paste0(Fix_Factor,collapse = MatrixDesign),', Data)')))
