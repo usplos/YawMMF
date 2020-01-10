@@ -149,7 +149,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
       cat('HOWEVER, we suggest you use the model with the following formula:\n\n',
           FormulaNew,
           ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor on which the random intercept was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
+                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
                  ''),
           '\n\n####################\n\n')
 
@@ -172,7 +172,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
           Formula,
           ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor on which the random intercept was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
+                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
                  ''),
           '\n\n')
       cat('The variance correlation matrix of the given model was:\n\n')
@@ -219,7 +219,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
           Formula,
           ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor on which the random intercept was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
+                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
                  ''),
           '\n\n')
       cat('The variance correlation matrix of the given model was:\n\n')
