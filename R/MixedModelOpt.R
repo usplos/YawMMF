@@ -1,4 +1,4 @@
-MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
+MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,ContrastsM = F,
                          Family = 'gaussian', criterionPCA = 0.01, MatrixDesign = '*'){
 
 
@@ -9,8 +9,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,
     Data[Re_Factor] = lapply(Data[Re_Factor], factor)
 
     for(ff in Fix_Factor){
-      contrasts(Data[[ff]]) = contr.simple(length(levels(Data[[ff]])))
-
+      if(!isTRUE(ContrastsM)){
+        contrasts(Data[[ff]]) = contr.simple(length(levels(Data[[ff]])))
+      }
       cat('For the fixed factor of ', ff, ', the contrasts matrix is:\n')
       print(contrasts(Data[[ff]]))
       cat('\n')
