@@ -20,6 +20,12 @@ if(!require(devtools)) install.packages("devtools")
 devtools::install_github("usplos/YawMMF")
 ```
 
+**If not necessary, do not update the packages suggested to be updated.**
+
+**If not necessary, do not update the packages suggested to be updated.**
+
+**If not necessary, do not update the packages suggested to be updated.**
+
 ## Installation Bugs and Possible Solutions
 
 ### Bug 01
