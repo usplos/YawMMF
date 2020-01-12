@@ -102,10 +102,6 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
-## Functions that have not been created
-
-...
-
 ## Update log
 
 #### 20200106
