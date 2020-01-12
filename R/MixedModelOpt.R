@@ -132,7 +132,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
       for (ii in 1:length(PCA_All)) {
         if(length(PCA_All[[ii]]$importance[2,]) == 1 & is.na(PCA_All[[ii]]$importance[2,1])){
           NumNA = 1
-        }
+        }else NumNA = 0
       }
       k=0
     }
