@@ -105,3 +105,10 @@ and comparisons or contrasts among them. (This function is still maturing)
 ## Functions that have not been created
 
 ...
+
+## Update log
+
+#### 20200106
+* `MixedModelOpt()` Can offer suggestions if the there is any redundant random factor. Can choose whether the contrasts manner of the fixed factors has been set via parameter `ContrastsM`; set it TRUE means the contrasts manner has been set mannually; otherwise, the function will use `contr.simple()` to set.
+
+* `MixedModelPlot()` For violin-plus-raw-data plot, users can choose whether to use the mean of DV across any group variable such as subject or item rather than use the raw observations via set the parameter `Group`; if the parameter is set NULL (this is also the default value), raw observations will be used to plot; otherwise, if users set it as the name of a given group variable, the mean values of raw observations on each unit in this group will be first calculated, and then the mean values are used to plot.
