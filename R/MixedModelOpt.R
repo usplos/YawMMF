@@ -1,4 +1,4 @@
-MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,ContrastsM = T,
+MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,ContrastsM = F,
                          Family = 'gaussian', criterionPCA = 0.01, MatrixDesign = '*'){
 
 
@@ -84,7 +84,6 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
   }
 
   NumLoop = 0
-  NumNA = 0
   while (k != 0) {
     VarM = VarCorr(ModelOpt)
     NamesVarM = names(VarM)
@@ -129,12 +128,14 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
     }
     NumLoop = NumLoop+1
     if(nrow(StdMatrixSlope) == 0){
-      for (ii in 1:length(PCA_All)) {
-        if(length(PCA_All[[ii]]$importance[2,]) == 1 & is.na(PCA_All[[ii]]$importance[2,1])){
-          NumNA = 1
-        }
-      }
       k=0
+    }
+  }
+
+  NumNA = 0
+  for (ii in 1:length(PCA_All)) {
+    if(length(PCA_All[[ii]]$importance[2,]) == 1 & is.na(PCA_All[[ii]]$importance[2,1])){
+      NumNA = 1
     }
   }
 
@@ -146,15 +147,19 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
       print(VarCorr(ModelAll))
       cat('\n\n####################\n\n')
 
-      cat('HOWEVER, we suggest you use the model with the following formula:\n\n',
+      cat('HOWEVER, under the criterion you have set, we suggest you use the model with the following formula:\n\n',
           FormulaNew,
           ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
-                 ''),
-          '\n\n####################\n\n')
+                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.\n\n',
+                 '\n\n'),
+          ifelse(isSingular(ModelOpt,tol = 10e-4),
+                 'There still is some singular variance matrix for the optimized model. More stricter criterion for variation-components-deletion should be considered.\n\n',
+                 '\n\n'),
+          '####################\n\n')
 
       cat('The differences between the maximum model and the optimized model was calculated with anova() function, and the results were shown:\n\n')
-      print(anova(ModelAll, ModelOpt))
+      AnovaModels  = anova(ModelAll, ModelOpt)
+      print(AnovaModels)
       cat('\n\n')
 
       return(list(DataNew = Data,
@@ -164,26 +169,30 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
                   rePCA_All = summary(rePCA(ModelAll)),
                   VarCorr_Opt = VarCorr(ModelOpt),
                   rePCA_Opt = summary(rePCA(ModelOpt)),
-                  Model_Compare = anova(ModelAll, ModelOpt),
+                  Model_Compare = AnovaModels,
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = Anova(ModelOpt)))
     }else{
       cat('\n\n####################\n\nThe formula of the model that you input was below:\n\n',
-          Formula,
-          ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
-                 ''),
-          '\n\n')
+          Formula,'\n\n')
       cat('The variance correlation matrix of the given model was:\n\n')
       print(VarCorr(ModelAll))
       cat('\n\n####################\n\n')
 
-      cat('HOWEVER, we suggest you use the model with the following formula:\n\n',
-          FormulaNew,'\n\n####################\n\n')
+      cat('HOWEVER, under the criterion you have set, we suggest you use the model with the following formula:\n\n',
+          FormulaNew,
+          ifelse(NumNA == 1,
+                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.\n\n',
+                 '\n\n'),
+          ifelse(isSingular(ModelOpt,tol = 10e-4),
+                 'There still is some singular variance matrix for the optimized model. More stricter criterion for variation-components-deletion should be considered.\n\n',
+                 '\n\n'),
+          '####################\n\n')
 
       cat('The differences between the given model and the optimized model was calculated with anova() function, and the results were shown:\n\n')
-      print(anova(ModelAll, ModelOpt))
+      AnovaModels  = anova(ModelAll, ModelOpt)
+      print(AnovaModels)
       cat('\n\n')
 
       return(list(DataNew = Data,
@@ -193,7 +202,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
                   rePCA_Giv = summary(rePCA(ModelAll)),
                   VarCorr_Opt = VarCorr(ModelOpt),
                   rePCA_Opt = summary(rePCA(ModelOpt)),
-                  Model_Compare = anova(ModelAll, ModelOpt),
+                  Model_Compare = AnovaModels,
                   ModelOpt = ModelOpt,
                   Summary_ModelOpt = summary(ModelOpt),
                   ANOVA_ModelOpt = Anova(ModelOpt)))
@@ -204,6 +213,12 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
     if(is.null(FormulaManual)){
       cat('\n\n####################\n\nThe maximum model was the most suggested:\n\n',
           Formula,'\n\n')
+      cat(ifelse(NumNA == 1,
+                 '* There is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.\n\n',
+                 ''),
+          ifelse(isSingular(ModelOpt,tol = 10e-4),
+                 '* There still is some singular variance matrix for the optimized model. More stricter criterion for variation-components-deletion should be considered.\n\n',
+                 '\n\n'))
       cat('The variance correlation matrix of the maximum model was:\n\n')
       print(VarCorr(ModelAll))
       cat('\n\n')
@@ -217,11 +232,13 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
                   ANOVA_ModelOpt = Anova(ModelOpt)))
     }else{
       cat('\n\n####################\n\nThe model that you input was the most suggested:\n\n',
-          Formula,
-          ifelse(NumNA == 1,
-                 '\n\nThere is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.',
+          Formula,'\n\n')
+      cat(ifelse(NumNA == 1,
+                 '* There is at least one random factor which was redundant, We suggest the deletion of it should be in your consideration. \n\nPlease check the PCA results of the optimised model.\n\n',
                  ''),
-          '\n\n')
+          ifelse(isSingular(ModelOpt,tol = 10e-4),
+                 '* There still is some singular variance matrix for the optimized model. More stricter criterion for variation-components-deletion should be considered.\n\n',
+                 '\n\n'))
       cat('The variance correlation matrix of the given model was:\n\n')
       print(VarCorr(ModelAll))
       cat('\n\n')
