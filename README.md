@@ -105,7 +105,7 @@ and comparisons or contrasts among them. (This function is still maturing)
 ## Update log
 
 #### 20200117
-* A new function named `MixedModelWrite()` has been added. This function support writing the fixed effects of a given model and the descriptive information of a given data into your disk. This will help you tidy the results in your paper.
+* A new function named `MixedModelWrite()` has been added. This function support writing the fixed effects of a given model and the descriptive information of a given data into your disk. This will help you tidy the results in your paper. In addition, it will generate the qqplot of the residuals of the model.
 * A new function named `MixedModelExplore()` has been added. This function can offer the information about the distribution of the dependent variable. This will help you detect whether it is needed to delete some value (e.g. outliers) or to transform the dependent vaiable (e.g. log-transformed).
 
 #### 20200110
