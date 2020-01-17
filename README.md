@@ -104,7 +104,11 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 ## Update log
 
+#### 20200117
+* A new function named `MixedModelWrite()` has been added. This function support writing the fixed effects of a given model and the descriptive information of a given data into your disk. This will help you tidy the results in your paper.
+* A new function named `MixedModelExplore()` has been added. This function can offer the information about the distribution of the dependent variable. This will help you detect whether it is needed to delete some value (e.g. outliers) or to transform the dependent vaiable (e.g. log-transformed).
+
 #### 20200110
-* `MixedModelOpt()` Can offer suggestions if the there is any redundant random factor. Can choose whether the contrasts manner of the fixed factors has been set via parameter `ContrastsM`; set it TRUE means the contrasts manner has been set mannually; otherwise, the function will use `contr.simple()` to set. Remember that the output will only report the existence of the redundant random factor rather than point out it/them for now. So which random factor(s) is/are redundant should be checked further.
+* `MixedModelOpt()` Can offer suggestions if the there is any redundant random factor. Users can choose whether the contrasts manner of the fixed factors has been set via parameter `ContrastsM`; set it TRUE means the contrasts manner has been set mannually; otherwise, the function will use `contr.simple()` to set. Remember that the output will only report the existence of the redundant random factor rather than point out it/them for now. So which random factor(s) is/are redundant should be checked further.
 
 * `MixedModelPlot()` For violin-plus-raw-data plot, users can choose whether to use the mean of DV across any group variable such as subject or item rather than use the raw observations via set the parameter `Group`; if the parameter is set `NULL` (this is also the default value), raw observations will be used to plot; otherwise, if users set it as the name of a given group variable, the mean values of raw observations on each unit in this group will be first calculated, and then the mean values are used to plot.
