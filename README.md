@@ -83,6 +83,8 @@ copy.packages.between.libraries(ask=TRUE)
 ## Brief introduction 
 This package offers convenient and effective functions for mixed model.
 
+`MixedModelDataExplore()` : to explore the dependent vairable (usually a continuous variable)
+
 `MixedModelDataSummary()` : to summarise your data. (This function is still maturing)
 
 `MixedModelDummy()` : to generate dummy variables for factor variables.
@@ -97,6 +99,8 @@ This package offers convenient and effective functions for mixed model.
 
 `MixedModelEmm()` : to compute estimated marginal means (EMMs) for specified factors in a mixed model, 
 and comparisons or contrasts among them. (This function is still maturing)
+
+`MixedModelWrite()` : to write the fixed effects of the given model or the descriptive inforamtion of the given dependent variable into yourdisk
 
 `CorrPlot()` : to draw correlation-matrix plot for multiple-variable correlations 
 
