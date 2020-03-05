@@ -31,7 +31,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
     Formula = FormulaManual
   }
 
-
+  cat('Building the maximum model...\n')
   if(Family == 'gaussian'){
     ModelAll = eval(parse(text = paste0('lmer(formula = ',Formula,', data = Data,',
                                         'control = lmerControl(optimizer = \'bobyqa\'))')))
@@ -55,6 +55,7 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
 
   ZPCModel = 0
   if(k > 0 & is.null(FormulaManual)){
+    cat('Building the zero-parameter-correlation model...\n')
     RandomSlope = paste('(1 + ',paste(IVName,collapse = ' + '),'||',Re_Factor,')',sep = '')
     FormulaNew = paste0(DV,' ~ 1 + ', paste(IVName,collapse = ' + '),' + ',
                         paste(RandomSlope,collapse = ' + '))
@@ -100,6 +101,9 @@ MixedModelOpt = function(FormulaManual = NULL,Data, DV, Fix_Factor, Re_Factor,Co
     StdMatrix = data.frame(Group, Effect, Std)
     StdMatrixIntercept = subset(StdMatrix, Effect == '1')
     StdMatrixSlope = subset(StdMatrix, Effect != '1')
+    cat('delete the random effect \'',
+        StdMatrixSlope %>% arrange(-Std) %>% .[c(nrow(.)),2] %>% as.character(),'\' on ',
+        StdMatrixSlope %>% arrange(-Std) %>% .[c(nrow(.)),1] %>% as.character(),'\n')
     StdMatrixSlope = StdMatrixSlope %>% arrange(-Std) %>% .[-c(nrow(.)),]
     StdMatrix = bind_rows(StdMatrixIntercept, StdMatrixSlope)
 
