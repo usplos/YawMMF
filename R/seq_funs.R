@@ -11,3 +11,12 @@ seq_reverse = function(x){
   return(tibble(x, seq = 1:length(x)) %>% arrange(-seq) %>% .[[1]])
 }
 
+seq_evermax = function(x){
+  Log = logical(length = length(x))
+  Log[1] = T
+  for (ii in 2:length(x)) {
+    Log[ii] = ifelse(x[ii] > max(x[1:(ii-1)]), T, F)
+  }
+  return(Log)
+}
+
