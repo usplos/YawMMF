@@ -108,6 +108,15 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 ## Update log
 
+#### 20200415
+* A new function named `NORM_CLUST()` has been added. This function can seperate a given sample, of which distribution is not normal, into a limited number of sub-sample of which distributions are all normal, and then return the numeric category labels.
+
+
+#### 20200404
+* A new function named `seq_space()` has been added. This function is similiar to `diff()`, supporting calculated the lagged and iterated differences.
+* A new function named `seq_reverse()` has been added. This function can return the vector in reversed relative order.
+* A new function named `seq_evermax()` has been added. This function can return whether the number is the maximum number in the sub-vector from the beginning to the current position.
+
 #### 20200117
 * A new function named `MixedModelWrite()` has been added. This function support writing the fixed effects of a given model and the descriptive information of a given data into your disk. This will help you tidy the results in your paper. In addition, it will generate the qqplot of the residuals of the model.
 * A new function named `MixedModelExplore()` has been added. This function can offer the information about the distribution of the dependent variable. This will help you detect whether it is needed to delete some value (e.g. outliers) or to transform the dependent vaiable (e.g. log-transformed).
