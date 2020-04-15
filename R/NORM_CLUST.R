@@ -10,20 +10,21 @@ NORM_CLUST = function(N, pvalue = 0.05){
   NROW = nrow(DF)
   BREAK = F
   while (NROW >= 10) {
-    G = 1
-    p = 0
-    while (p < pvalue) {
+    G = 1;p = 0;while (p < pvalue) {
       Model = Mclust(DF$N, G = G)
-      CLASS = table(Model$classification)[table(Model$classification) > 3] 
+      if(is.null(Model)){
+        BREAK = T;break
+      }
+      CLASS = table(Model$classification)[table(Model$classification) > 3]
       ps = numeric(length = length(CLASS))
       for(cc in 1:length(CLASS)){
         ps[cc] = ifelse(length(unique(DF$N[Model$classification == as.numeric(names(CLASS))[cc]])) == 1,
-                        0,shapiro.test(DF$N[Model$classification == as.numeric(names(CLASS))[cc]])$p.value) 
+                        0,shapiro.test(DF$N[Model$classification == as.numeric(names(CLASS))[cc]])$p.value)
       }
       p = ps[which(ps == max(ps))]
       Class = names(CLASS)[which(ps == max(ps))]
       G = G+1
-      
+
       if(G >= length(unique(DF$N))){
         BREAK = T;break
       }
