@@ -37,4 +37,5 @@ Imports: tidyverse,
          car,
          ggbeeswarm,
          moments,
-         psych
+         psych,
+         mclust
