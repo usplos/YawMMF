@@ -43,7 +43,7 @@ NORM_CLUST = function(N, pvalue = 0.05){
     }
   }
   if(nrow(DF) > 0){
-    DF$C = start
+    DF$C = -1
     DFs = rbind(DFs, DF)
   }
   return(DFs %>% arrange(label) %>% .$C)
