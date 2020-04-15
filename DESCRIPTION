@@ -26,8 +26,7 @@ Depends: R (>= 3.6.1),
          car,
          ggbeeswarm,
          moments,
-         psych,
-         mclust
+         psych
 Imports: tidyverse,
          rio,
          simr,
@@ -37,5 +36,4 @@ Imports: tidyverse,
          car,
          ggbeeswarm,
          moments,
-         psych,
-         mclust
+         psych
