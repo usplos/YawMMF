@@ -1,5 +1,6 @@
 NORM_CLUST = function(N, pvalue = 0.05){
-  library(mclust);library(tidyverse)
+  if(!require(mclust)) install.packages('mclust')
+  library(mclust)
   p = 0
   start = 1
   DFs = tibble()
