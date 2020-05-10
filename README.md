@@ -49,9 +49,13 @@ WARNING: Rtools is required to build R packages, but is not currently installed.
 Please download and install Rtools 3.5 from http://cran.r-project.org/bin/windows/Rtools/
 ```
 
-#### Solution
+#### Solution 1
 
 Download and install [Rtools](http://cran.r-project.org/bin/windows/Rtools/).
+
+#### Solution 2
+
+Download and install [Git](https://git-scm.com/downloads).
 
 ### Bug 03
 
