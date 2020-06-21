@@ -114,7 +114,7 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 #### 20200621
 * The function `MixedModelOpt()` has been removed. There are some potential problems within it, which may cause misleading results.
-* A new function named `MixedModelDiag()` has been updated. Unlike 'MixedModelOpt()', this new function does not return the optimized model and corresponse results, but provides more comprehensive and objective information which the users can refer to. Here is an example for using it.
+* A new function named `MixedModelDiag()` has been updated. Unlike `MixedModelOpt()`, this new function does not return the optimized model and corresponse results, but provides more comprehensive and objective information which the users can refer to. Here is an example for using it.
 * Several convenient functions have been updated. `Simplecoding()` is able to set the contrast-coding for factors within the data. `rePCA2df()` can help tidy the results of `rePCA()`. `VarCorr2df()` can help tidy the results of `VarCorr()`.
 
 ```
