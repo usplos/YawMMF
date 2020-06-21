@@ -113,9 +113,9 @@ and comparisons or contrasts among them. (This function is still maturing)
 ## Update log
 
 #### 20200621
-* The function `MixedModelOpt()` has been removed for there are potential problems within it, which may cause misleading results.
-* A new function named `MixedModelDiag()` has been updated. This function is able to offer contructive suggestions for model optimization. However, unlike 'MixedModelOpt()', this new function only print the suggestion on the screen with nothing returned. Its help document is going to be updated later. Here is an example for using it.
-* Several convenient functions have been updated. `Simplecoding()` is able to set the contrast-coding for factors within the data. `rePCA2df()` offers the function to tidy the results of `rePCA()`. `VarCorr2df()` offers the function to tidy the results of `VarCorr()`.
+* The function `MixedModelOpt()` has been removed. There are some potential problems within it, which may cause misleading results.
+* A new function named `MixedModelDiag()` has been updated. Unlike 'MixedModelOpt()', this new function does not return the optimized model and corresponse results, but provides more comprehensive and objective information which the users can refer to. Here is an example for using it.
+* Several convenient functions have been updated. `Simplecoding()` is able to set the contrast-coding for factors within the data. `rePCA2df()` can help tidy the results of `rePCA()`. `VarCorr2df()` can help tidy the results of `VarCorr()`.
 
 ```
 library(YawMMF)
