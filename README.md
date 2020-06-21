@@ -12,7 +12,7 @@ Effective **M**ixed **M**odel **F**unctions
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/Psych.ZhangGuangyao/ "Personal profile on Zhihu.com")
 
 ## Citation
-Zhang, G. (2020). *YawMMF: Effective Mixed Model Functions*. Available at: https://github.com/usplos/YawMMF
+Zhang, G. (2020). *YawMMF: Effective Mixed Model Functions*. Available at: https://github.com/usplos/YawMMF.
 
 ## Install
 ```r
@@ -111,6 +111,25 @@ and comparisons or contrasts among them. (This function is still maturing)
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+
+#### 20200621
+* The function `MixedModelOpt()` has been removed for there are potential problems within it, which may cause misleading results.
+* A new function named `MixedModelDiag()` has been updated. This function is able to offer contructive suggestions for model optimization. However, unlike 'MixedModelOpt()', this new function only print the suggestion on the screen with nothing returned. Its help document is going to be updated later. Here is an example for using it.
+* Several convenient functions have been updated. `Simplecoding()` is able to set the contrast-coding for factors within the data. `rePCA2df()` offers the function to tidy the results of `rePCA()`. `VarCorr2df()` offers the function to tidy the results of `VarCorr()`.
+
+```
+library(YawMMF)
+DemoData %>% 
+    Simplecoding(data = ., Factor = 'CondA,CondB') %>%
+    MixedModelDummy(data = ., Fix_Factor = 'CondA,CondB',MatrixDesign = '*',ContrastsM = F) %>% 
+    MixedModelDiag(data = ., 
+                   DV = 'DV', 
+                   IV = 'CondA*CondB',
+                   randomfactor = 'subj,item',
+                   randomeffect = '1+CondA1+CondB1+CondA1_CondB1,1+CondA1+CondB1+CondA1_CondB1',
+                   PCAdeletecriterion = 0)
+```
+
 
 #### 20200415
 * A new function named `NORM_CLUST()` has been added. This function can seperate a given sample, of which distribution is not normal, into a limited number of sub-sample of which distributions are all normal, and then return the numeric category labels.
