@@ -6,14 +6,14 @@
 To perform the power analysis for the given model
 }
 \usage{
-MixedModelPower(Model, FixEffect = NULL, Methods = 't', Nsim = 100,
-                Along = NULL, maxNumber = NULL, Breaks = NULL)
+MixedModelPower(Model, FixEffect = NULL, Methods = method = c("z", "t", "f", "chisq", "anova", "lr", "sa",
+  "kr", "pb"), Nsim = 100, Along = NULL, maxNumber = NULL, Breaks = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{Model}{A mixed model build via lme4 package}
   \item{FixEffect}{The fixed effect of which the power is to calculate}
-  \item{Methods}{The methods to examine the power}
+  \item{Methods}{The methods to examine the power, such as 't', 'f','z','chisq'}
   \item{Nsim}{Number of simulation}
   \item{Along}{The name of the group variable which you want extent the data along. A character name}
   \item{maxNumber}{The max number to extend the data along the group variable}
@@ -27,6 +27,5 @@ MixedModelPower(Model, FixEffect = NULL, Methods = 't', Nsim = 100,
 Model = lmer(data = DemoData, DV~CondA+(1|subj)+(1|item))
 MixedModelPower(Model = Model, FixEffect = "CondAA2", Methods = "t", Nsim = 10, Along = 'subj',maxNumber = 50, Breaks = seq(5,50,5))
 }
-\seealso{
-\code{\link{MixedModelOptPower}}
+
 }
