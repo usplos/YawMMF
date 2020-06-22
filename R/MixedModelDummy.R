@@ -1,4 +1,4 @@
-MixedModelDummy = function(Data, Fix_Factor, FixEffects, ContrastsM = F){
+MixedModelDummy = function(Data, FixEffects){
   eval(parse(text = paste0('mmff = model.matrix(~ ',FixEffects,', Data)')))
   IVName = gsub(pattern = ':',replacement = '_',x = colnames(mmff)[2:ncol(mmff)]) %>%
     substr(x = ., start = 1, stop = nchar(.))
