@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Dummy vairable generator}
 \description{
-To generate the dummy variable for the fixed factor
+To generate the dummy variable for the fixed effects
 }
 \usage{
 MixedModelDummy(Data, FixEffects)
