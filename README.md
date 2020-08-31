@@ -111,6 +111,8 @@ and comparisons or contrasts among them. (This function is still maturing)
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20200831
+* A new function named `p.sig(p, numcontrasts = 1)` has been updated. This function can return the significance labels for p value. For the parameter `numcontrasts`, the default value is 1, indicating that there is no Bonferroni correction. And if any, by setting this parameter, this function can return the significance labels whether the contrasts have survived the Bonferroni correction.
 
 #### 20200621
 * The function `MixedModelOpt()` has been removed. There are some potential problems within it, which may cause misleading results.
