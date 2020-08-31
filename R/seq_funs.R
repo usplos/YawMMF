@@ -14,9 +14,16 @@ seq_reverse = function(x){
 seq_evermax = function(x){
   Log = logical(length = length(x))
   Log[1] = T
-  for (ii in 2:length(x)) {
-    Log[ii] = ifelse(x[ii] > max(x[1:(ii-1)]), T, F)
+  if(length(x) > 1){
+    for (ii in 2:length(x)) {
+      Log[ii] = ifelse(x[ii] > max(x[1:(ii-1)]), T, F)
+    }
   }
   return(Log)
 }
 
+p.sig = function(p, numcontrasts = 1){
+  ifelse(p > .05/numcontrasts,'',
+         ifelse(p > .01/numcontrasts,'*',
+                ifelse(p > .001/numcontrasts,'**','***')))
+}
