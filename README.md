@@ -111,6 +111,12 @@ and comparisons or contrasts among them. (This function is still maturing)
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20200918
+* A new funciton named `StrInsertSpace()` has been added. Using it like `StrInsertSpace(c('AA','AAA','AAAA'))`
+* A new function named `StrDeletePosition()` has been added. Using it like `StrDeletePosition(X = 'ABCDEFG', position = c(1,3,5)`
+* A new funciton named `StrSubPosition()` has been added. Using it like `StrSubPosition(X = 'ABCDEFG', position = c(1,3,5)`
+* A new function named `StrUniqueChar()` has been added. Using it like `StrUniqueChar(X = 'ABCDDEFGG')`
+
 #### 20200831
 * A new function named `p.sig(p, numcontrasts = 1)` has been updated. This function can return the significance labels for p value. For the parameter `numcontrasts`, the default value is 1, indicating that there is no Bonferroni correction. And if any, by setting this parameter, this function can return the significance labels whether the contrasts have survived the Bonferroni correction.
 
