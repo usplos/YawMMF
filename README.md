@@ -111,6 +111,27 @@ and comparisons or contrasts among them. (This function is still maturing)
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20201016
+* A new function named `EffectSize()` has been added. This function depends on `effectsize` package in R, and can be used to calculate the effect size of the fixed effects for a given mixed model (whether the model is generalized or not). *Notion that the parameter `Type` can only be defined as `'d'` or `'r'`.*
+
+Here is an example:
+```
+library(YawMMF)
+Model1 = lmer(data=DemoData, DV~CondA+(1|subj))
+Model2 = glmer(data = DemoData2, DV~CondA+(1|subj),family = 'binomial')
+
+# to calculate the cohen d value
+EffectSize(Model = Model1, Type = 'd', GLMM = F)
+EffectSize(Model = Model2, Type = 'd', GLMM = T)
+
+# to calculate the r value
+EffectSize(Model = Model1, Type = 'r', GLMM = F)
+EffectSize(Model = Model2, Type = 'r', GLMM = T)
+
+```
+
+
+
 #### 20200918
 * A new funciton named `StrInsertSpace()` has been added. Using it like `StrInsertSpace(c('AA','AAA','AAAA'))`
 * A new function named `StrDeletePosition()` has been added. Using it like `StrDeletePosition(X = 'ABCDEFG', position = c(1,3,5)`
