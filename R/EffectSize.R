@@ -15,7 +15,7 @@ EffectSize = function(Model, Type, GLMM=F){
     df = summary(Model)$coef[,3]
 
     if(Type == 'd'){
-      convert_t_to_d(t = t, df_error = df,pooled = T)
+      convert_t_to_d(t = t, df_error = df,pooled = F)
     }else if(Type == 'r'){
       convert_t_to_r(t = t, df_error = df)
     }else{
