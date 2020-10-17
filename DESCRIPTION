@@ -1,7 +1,7 @@
 Package: YawMMF
 Type: Package
 Title: Effective functions for Generalized Mixed Model
-Version: 0.1.0
+Version: 0.2.1
 Authors@R: c(
   person("Guangyao", "Zhang", email="zhanggunagyao@psych.ac.cn", role=c("aut", "cre"))
   )
