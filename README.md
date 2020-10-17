@@ -3,7 +3,7 @@ Effective **M**ixed **M**odel **F**unctions
 
 
 ![](https://img.shields.io/badge/R-package-success)
-![](https://img.shields.io/badge/Version-0.1.0-success)
+![](https://img.shields.io/badge/Version-0.2.1-success)
 ![](https://img.shields.io/github/license/usplos/YawMMF?label=License&color=success)
 [![](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![](https://img.shields.io/github/stars/usplos/YawMMF?style=social)](https://github.com/usplos/YawMMF/stargazers)
@@ -112,7 +112,11 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 ## Update log
 #### 20201016
-* A new function named `EffectSize()` has been added. This function depends on `effectsize` package in R, and can be used to calculate the effect size of the fixed effects for a given mixed model (whether the model is generalized or not). *Notion that the parameter `Type` can only be defined as `'d'` or `'r'`.*
+* A new function named `EffectSize()` has been added. This function depends on `effectsize` package in R, and can be used to calculate the effect size of the fixed effects for a given mixed model (whether the model is generalized or not). 
+
+*Notion that the parameter `Type` can only be defined as `'d'` or `'r'`.*
+
+*Notion that the function will provide the equation of calculating accordingly, which will help researchers understand and check the results.*
 
 Here is an example:
 ```
