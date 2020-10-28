@@ -18,7 +18,7 @@ MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV'){
       export::table2office(x = Modelinfo,
                            file = paste0(Prefix,'_Modelinfo.doc'),
                            type = 'DOC',digits = 3,font = 'Times',
-                           append = T)
+                           append = T,add.rownames = T)
 
       qqp = ggplot(as_tibble(residuals(Model[[mm]])), aes(sample = value))+
         stat_qq(alpha = 0.2) + stat_qq_line()+
@@ -33,7 +33,8 @@ MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV'){
       ps = qqp|denp
       #ggsave(filename = paste0(Prefix,'_Residual information plot.png'),plot = ps,device = 'png',
       #       units = 'cm',width = 20,height = 10)
-      export::graph2office(x = ps,file = paste0(Prefix,'_Residual information plot.ppt'),type = 'PPT')
+      export::graph2office(x = ps,file = paste0(Prefix,'_Residual information plot.ppt'),
+                           type = 'PPT',append = T)
     }
 
   }
