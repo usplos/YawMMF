@@ -112,13 +112,27 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 ## Update log
 #### 20201028
-**Critical update:**  A new function named `MixedModelWrite2(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare)` has been created. It can output the information of fixed effects for more than one model in the form of `docx` document. The information of parameters is following:
+**Critical update:**  A new function named `MixedModelWrite2(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare)` has been created. It can output the information of fixed effects for more than one model in the form of `docx` document. *This function requires [`export` package](https://github.com/tomwenseleers/export) and `texreg` package. But these can be automatically downloaded.*
+
+The information of parameters is following:
 
 * `Model` - a list of Models;
 * `Data` - a list of summarised data;
 * `Prefix` - prefix for the name of the output file;
 * `compareModel` - whether to compare different models; it only works when the Model is not set `NULL`;
 * `ModelnamesTocompare` - the names of the models to be compared; it only works when the compareModel is set 'T'.
+
+Here is one example:
+```
+Model1 = lmer(data = DemoData, 
+              DV~CondA+(1|subj)+(1|item))
+Model2 = lmer(data = DemoData, 
+              log(DV)~CondA+(1|subj)+(1|item))
+MixedModelWrite2(Model = list(Model1, Model2),
+                 Prefix = 'DV',
+                 compareModel = T,
+                 ModelnamesTocompare = c('Origin','Log'))
+```
 
 #### 20201016
 * A new function named `EffectSize()` has been added. This function depends on `effectsize` package in R, and can be used to calculate the effect size of the fixed effects for a given mixed model (whether the model is generalized or not). 
