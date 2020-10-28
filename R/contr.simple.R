@@ -10,3 +10,12 @@ contr.simple = function(n){
     return(rbind(firstline, restlines))
   }
 }
+
+contr.simpleStd = function(n){
+ 
+  X2 = matrix(0,nrow = n-1,ncol = n-1)
+  X2[lower.tri(X2)] = -1/sqrt(n-1)
+  X2[upper.tri(X2)] = -1/sqrt(n-1)
+  diag(X2) = sqrt(n-1)
+  rbind(-1/sqrt(n-1) %>% rep(n-1),X2)
+}
