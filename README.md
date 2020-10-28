@@ -112,15 +112,15 @@ and comparisons or contrasts among them. (This function is still maturing)
 
 ## Update log
 #### 20201028
-**Critical update:**  A new function named `MixedModelWrite2(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare)` has been created. It can output the information of fixed effects for more than one model in the form of `docx` document. *This function requires [`export` package](https://github.com/tomwenseleers/export) and `texreg` package. But these can be automatically downloaded.*
+**Critical update:**  A new function named `MixedModelWrite2(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare)` has been created. It can output the information of fixed effects for more than one model in the form of `docx` document. *This function requires [`export` package](https://github.com/tomwenseleers/export) and `texreg` package. But these can be automatically installed.*
 
 The information of parameters is following:
 
 * `Model` - a list of Models;
 * `Data` - a list of summarised data;
 * `Prefix` - prefix for the name of the output file;
-* `compareModel` - whether to compare different models; it only works when the Model is not set `NULL`;
-* `ModelnamesTocompare` - the names of the models to be compared; it only works when the compareModel is set 'T'.
+* `compareModel` - whether to compare different models; it only works when the `Model` is not set `NULL`;
+* `ModelnamesTocompare` - the names of the models to be compared; it only works when the `compareModel` is set `'T'`.
 
 Here is one example:
 ```
