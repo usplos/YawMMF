@@ -111,6 +111,15 @@ and comparisons or contrasts among them. (This function is still maturing)
 `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20201028
+**Critical update:**  A new function named `MixedModelWrite2(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare)` has been created. It can output the information of fixed effects for more than one model in the form of `docx` document. The information of parameters is following:
+
+* `Model` - a list of Models;
+* `Data` - a list of summarised data;
+* `Prefix` - prefix for the name of the output file;
+* `compareModel` - whether to compare different models; it only works when the Model is not set `NULL`;
+* `ModelnamesTocompare` - the names of the models to be compared; it only works when the compareModel is set 'T'.
+
 #### 20201016
 * A new function named `EffectSize()` has been added. This function depends on `effectsize` package in R, and can be used to calculate the effect size of the fixed effects for a given mixed model (whether the model is generalized or not). 
 
