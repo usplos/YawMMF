@@ -1,4 +1,4 @@
-MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV'){
+MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare){
   if(!require(export)) {devtools::install_github("tomwenseleers/export")}
   if(!is.null(Data)){
     for(dd in 1:length(Data)){
@@ -37,5 +37,11 @@ MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV'){
                            type = 'PPT',append = T)
     }
 
+    if(isTRUE(compareModel)){
+      htmlreg(Model,
+              custom.model.names = ModelnamesTocompare,
+              file = paste0(Prefix,'_Modelcamparion.doc'),
+              digits = 3,doctype = T,head.tag = T,margin = 2)
+    }
   }
 }
