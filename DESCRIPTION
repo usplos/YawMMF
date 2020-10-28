@@ -28,7 +28,8 @@ Depends: R (>= 3.6.1),
          moments,
          psych,
          effectsize,
-         MuMIn
+         MuMIn,
+         textreg
 Imports: tidyverse,
          rio,
          simr,
