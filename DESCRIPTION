@@ -29,7 +29,7 @@ Depends: R (>= 3.6.1),
          psych,
          effectsize,
          MuMIn,
-         textreg
+         texreg
 Imports: tidyverse,
          rio,
          simr,
