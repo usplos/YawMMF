@@ -1,4 +1,4 @@
-MixedModelWriteout = function(Model = NULL, Data = NULL, Prefix = 'DV'){
+MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV'){
   if(!require(export)) {devtools::install_github("tomwenseleers/export")}
   if(!is.null(Data)){
     for(dd in 1:length(Data)){
