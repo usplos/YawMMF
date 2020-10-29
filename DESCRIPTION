@@ -29,7 +29,8 @@ Depends: R (>= 3.6.1),
          psych,
          effectsize,
          MuMIn,
-         texreg
+         texreg,
+         patchwork
 Imports: tidyverse,
          rio,
          simr,
