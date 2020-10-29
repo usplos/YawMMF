@@ -124,6 +124,7 @@ The information of parameters is following:
 
 Here is one example:
 ```
+library(YawMMF)
 Model1 = lmer(data = DemoData, 
               DV~CondA+(1|subj)+(1|item))
 Model2 = lmer(data = DemoData, 
