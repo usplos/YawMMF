@@ -1,4 +1,4 @@
-PCOR = function(X,Y,...){
+PCOR = function(X,Y,...,Method = 'pearson', Alternative='two.sided'){
   COV = list(...)
   df = cbind(X,Y)
   for(ii in 1:length(COV)) df = cbind(df, COV[[ii]])
@@ -8,5 +8,5 @@ PCOR = function(X,Y,...){
   formula2 = paste0('Y~',paste0(names(df)[3:ncol(df)],collapse = '+'))
   Xe = residuals(lm(data = df, as.formula(formula1)))
   Ye = residuals(lm(data = df, as.formula(formula2)))
-  cor.test(Xe,Ye)
+  cor.test(Xe,Ye,method = Method, alternative = Alternative)
 }
