@@ -76,4 +76,3 @@ MixedModelPlot(Data = DemoData,
                Legend = 'XXX')
 
 }
-}
