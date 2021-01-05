@@ -27,5 +27,3 @@ MixedModelPower(Model, FixEffect = NULL, Methods = method = c("z", "t", "f", "ch
 Model = lmer(data = DemoData, DV~CondA+(1|subj)+(1|item))
 MixedModelPower(Model = Model, FixEffect = "CondAA2", Methods = "t", Nsim = 10, Along = 'subj',maxNumber = 50, Breaks = seq(5,50,5))
 }
-
-}
