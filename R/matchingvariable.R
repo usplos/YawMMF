@@ -1,3 +1,10 @@
+# 函数名为matchingvariable()，
+# 功能是对给定的两组观测值，
+# 从两组观测值中抽取相同数量的样本，
+# 找到可以使两组样本差异不显著(t < 1)时的最大样本量
+# 函数共两个参数，y为总体观测值，by为两组组别的标记
+# 函数将返回一组1-0形式的向量，1表示对应位置的观测值符合要求，同理，0表示不符合要求
+
 matchingvariable = function(y, by){
   tibbleyAll = tibble(y, by, seq = 1:length(y))
   AverageAll = mean(y)
