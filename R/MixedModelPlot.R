@@ -7,8 +7,6 @@ MixedModelPlot = function(Object = NULL,Data = NULL, DV, SE = NULL, Pred, Modx =
                           Xlab = NULL, Ylab = NULL, Title = NULL, Legend = NULL,
                           Edit = F, Fun = T){
   
-cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
 
   if(!isTRUE(Fun)){
     if(is.null(Object)){
