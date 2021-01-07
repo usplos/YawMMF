@@ -1,8 +1,6 @@
 MixedModelPower = function(Model, FixEffect = NULL, Methods = 't', Nsim = 100,
                            Along = NULL, maxNumber = NULL, Breaks = NULL){
   
-cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
 
   library(simr)
   PowerList = list()
