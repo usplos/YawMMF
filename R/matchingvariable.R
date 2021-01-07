@@ -7,8 +7,6 @@
 
 matchingvariable = function(y, by, type = 't', threshold = 1){
   
-cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
 
   tibbleyAll = tibble(y, by, seq = 1:length(y))
   AverageAll = mean(y)
