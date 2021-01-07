@@ -112,6 +112,27 @@ This package offers convenient and effective functions for mixed model.
 * `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20210107
+A new function named `matchingvariable(y = , by = , type = 't', threshold = 1)` has been updated. It is very common in cognitive experiments that you need two sets of experimental materials that are equal in number and match on a particular attribute. You want to make sure that there is no significant difference between the two groups of materials in the (rating) score for this attribute, and you want to find as many materials as possible that meet this requirement. This function will help you do this efficiently.
+
+This function will return a set of  0-1 vector, in which 1 means qualified, while 0 means unqualified.
+
+You can use statistical `t` value (*e.g.* *`t`* < 1) to select the materials:
+```
+y1 = rnorm(100,mean = 0, sd = 1)
+cond1 = rep('C1', 100)
+y2 = rnorm(120,mean = 0.5, sd = 1)
+cond2 = rep('C2', 120)
+y = c(y1, y2)
+by = c(cond1, cond2)
+matchingvariable(y = y, by = by, type = 't', threshold = 1)
+```
+
+You can also use statistical `p` value (*e.g.* *`p`* > 0.1) to select the materials:
+```
+matchingvariable(y = y, by = by, type = 'p', threshold = 0.1)
+```
+
 #### 20201217
 A new function named `PCOR(X,Y,...,Method = 'pearson', Alternative='two.sided')` has been updated. It can perfrom the partial correlation analysis. The `X` and 'Y' are the two variables that the partial correlation is perfomed between. `...` are the variables to be controlled. `Method` and `Alternative` parameters can be defined in the same way as the `method` and `alternative` ones in the base `R` function `cor.test()`.
 
