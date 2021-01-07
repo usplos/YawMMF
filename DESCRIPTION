@@ -29,7 +29,8 @@ Depends: R (>= 3.6.1),
          effectsize,
          MuMIn,
          texreg,
-         patchwork
+         patchwork,
+         glue
 Imports: tidyverse,
          rio,
          simr,
@@ -40,4 +41,5 @@ Imports: tidyverse,
          ggbeeswarm,
          moments,
          texreg,
-         psych
+         psych,
+         glue
