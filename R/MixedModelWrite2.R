@@ -1,7 +1,5 @@
 MixedModelWrite2 = function(Model = NULL, Data = NULL, Prefix = 'DV', compareModel = F, ModelnamesTocompare){
   
-cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
 
   if(!require(export)) {devtools::install_github("tomwenseleers/export")}
   if(!is.null(Data)){
