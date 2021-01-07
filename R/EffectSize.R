@@ -1,6 +1,4 @@
 EffectSize = function(Model, Type, GLMM=F){
-  cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
   library(effectsize)
   if(isTRUE(GLMM)){
     z = summary(Model)$coef[,3]
