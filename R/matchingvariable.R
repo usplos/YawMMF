@@ -6,6 +6,10 @@
 # 函数将返回一组1-0形式的向量，1表示对应位置的观测值符合要求，同理，0表示不符合要求
 
 matchingvariable = function(y, by, type = 't', threshold = 1){
+  
+cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
+
   tibbleyAll = tibble(y, by, seq = 1:length(y))
   AverageAll = mean(y)
   uniqueby = unique(by)
