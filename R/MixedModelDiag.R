@@ -37,8 +37,6 @@ rePCA2df = function(Model){
 
 #### MixedModelDiag() ####
 MixedModelDiag = function(data, DV, IV, randomfactor, randomeffect, PCAdeletecriterion = 0, Family = 'gaussian'){
-  cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
   randomfactor = randomfactor %>% strsplit(split = ',',fixed = T) %>% unlist()
   randomeffect = randomeffect %>% strsplit(split = ',',fixed = T) %>% unlist()
   FormulaREmax = c()
