@@ -1,5 +1,9 @@
 #### simplecoding() ####
 Simplecoding = function(data, Factor){
+  
+cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
+
   Factors = Factor %>% strsplit(split = ' ',fixed = T) %>% unlist() %>%
     paste(sep = '') %>% strsplit(split = ',',fixed = T) %>% unlist()
   data[Factors] = lapply(data[Factors],FUN = factor)
