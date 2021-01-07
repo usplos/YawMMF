@@ -1,4 +1,6 @@
 MixedModelDataSummary = function(Data, DV = 'DV',Cond = 'CondA', Group = NA){
+  cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
   if(!require(tidyverse)) install.packages('tidyverse')
 
 
