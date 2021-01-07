@@ -1,4 +1,8 @@
 contr.simple = function(n){
+  
+cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
+
   if(n == 2){
     return(contr.sum(2)/2*(-1))
   }else{
@@ -13,6 +17,9 @@ contr.simple = function(n){
 
 contr.simpleStd = function(n){
  
+cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
+
   X2 = matrix(0,nrow = n-1,ncol = n-1)
   X2[lower.tri(X2)] = -1/sqrt(n-1)
   X2[upper.tri(X2)] = -1/sqrt(n-1)
