@@ -1,6 +1,4 @@
 MixedModelDataExplore = function(Data, DV, DVLog = F, Cond, DeleteCriterion = c(80,1000)){
-  cat('please cite: \n')
-cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
   if(!is.null(DeleteCriterion)){
     TrialRaw = eval(parse(text = paste0('with(Data, tapply(',DV,', list(',Cond,')',',length))')))
     Data = eval(parse(text = paste0('subset(Data,',DV,' > ', DeleteCriterion[[1]],' & ',DV,' < ', DeleteCriterion[[2]],')')))
