@@ -5,7 +5,7 @@
 # 函数共两个参数，y为总体观测值，by为两组组别的标记
 # 函数将返回一组1-0形式的向量，1表示对应位置的观测值符合要求，同理，0表示不符合要求
 
-matchingvariable = function(y, by){
+matchingvariable = function(y, by, type = 't', threshold = 1){
   tibbleyAll = tibble(y, by, seq = 1:length(y))
   AverageAll = mean(y)
   uniqueby = unique(by)
@@ -35,7 +35,14 @@ matchingvariable = function(y, by){
     ifequal = bind_rows(ifequal,tibble(samplesize, t, p))
   }
 
-  largestsamplesize = ifequal %>% filter(t < 1) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  if(type == 't'){
+    largestsamplesize = ifequal %>% filter(t < threshold) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else if(type == 'p'){
+    largestsamplesize = ifequal %>% filter(p > threshold) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else{
+    print('selecting can only be performed via t value or p value. Please set correct \'type\'')  
+  }
+  
 
   full_join(tibbleyAll,
             bind_rows(y1[1:largestsamplesize,],
