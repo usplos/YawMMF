@@ -3,6 +3,8 @@ CorrPlot = function(Data,
                     Rows,
                     Xlab = NULL, Ylab = NULL,
                     Edit = F){
+  cat('please cite: \n')
+cat('Zhang, G., Li, X., & Lin, N. (2020). YawMMF: Effective Mixed Model Functions. Available at: https://github.com/usplos/YawMMF.\n')
   Cols = Cols %>% gsub(pattern = ' ',replacement = '', x = .) %>%
     strsplit(x = ., split = ',', fixed = T) %>% unlist()
   Rows = Rows %>% gsub(pattern = ' ',replacement = '', x = .) %>%
