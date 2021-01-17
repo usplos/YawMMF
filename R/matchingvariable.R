@@ -51,3 +51,58 @@ matchingvariable = function(y, by, type = 't', threshold = 1){
                       y2[1:largestsamplesize,])) %>% arrange(seq) %>%
     mutate(label = ifelse(is.na(distance), 0,1)) %>% .[['label']]
 }
+
+#rm(list = ls())
+#set.seed(1234)
+#y = rnorm(n = 200, mean = 0.5)
+#value = 0
+#type='t';
+#threshold=1
+matchingvalue = function(y, value, type='t', threshold=1){
+  by = ifelse(y > value, 1, 0)
+  
+  tibbleyAll = tibble(y, by, seq = 1:length(y))
+  AverageAll = mean(y)
+  uniqueby = unique(by)
+  y1 = tibbleyAll %>% filter(by == uniqueby[1])
+  y2 = tibbleyAll %>% filter(by == uniqueby[2])
+  y1 = y1 %>% mutate(distance = y - AverageAll,
+                     absdistance = abs(distance),
+                     direction = ifelse(distance > 0,1,-1)) %>%
+    arrange(absdistance) %>%
+    group_by(direction) %>%
+    mutate(order = 1:length(y)) %>%
+    arrange(order, direction)
+  y2 = y2 %>% mutate(distance = y - AverageAll,
+                     absdistance = abs(distance),
+                     direction = ifelse(distance > 0,1,-1)) %>%
+    arrange(absdistance) %>%
+    group_by(direction) %>%
+    mutate(order = 1:length(y)) %>%
+    arrange(order, direction)
+  
+  ifequal = tibble()
+  for(rr in 2:min(c(nrow(y1), nrow(y2)))){
+    samplesize = rr
+    fit = t.test(c(y1$y[1:rr],y2$y[1:rr]),mu = value)
+    t = fit$statistic %>% abs()
+    p = fit$p.value
+    ifequal = bind_rows(ifequal,tibble(samplesize, t, p))
+  }
+  
+  if(type == 't'){
+    largestsamplesize = ifequal %>% filter(t < threshold) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else if(type == 'p'){
+    largestsamplesize = ifequal %>% filter(p > threshold) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else{
+    print('selecting can only be performed via t value or p value. Please set correct \'type\'')  
+  }
+  
+  
+  full_join(tibbleyAll,
+            bind_rows(y1[1:largestsamplesize,],
+                      y2[1:largestsamplesize,])) %>% arrange(seq) %>%
+    mutate(label = ifelse(is.na(distance), 0,1)) %>% .[['label']]
+}
+
+
