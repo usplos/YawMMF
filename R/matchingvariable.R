@@ -105,4 +105,74 @@ matchingvalue = function(y, value, type='t', threshold=1){
     mutate(label = ifelse(is.na(distance), 0,1)) %>% .[['label']]
 }
 
+matchingvariablegeneralized = function(y, by, type = 'F', threshold = 1){
+  cond = by
+  by=c()
+  for(ii in 1:length(cond)){
+    by = cbind(by, cond[[ii]])
+  }
+  bydf = by %>% as_tibble()
+  names(bydf) = paste0('V',1:ncol(bydf))
+  CondUnq = character(length = nrow(bydf))
+  for(rr in 1:nrow(bydf)){
+    CondUnq[rr] = paste(bydf[rr,],collapse = '_')
+  }
+  bydf['CondUnq'] = CondUnq
+  
+  tibbleyAll = bind_cols(tibble(y), bydf, tibble(seq = 1:length(y)))
+  AverageAll = mean(y)
+  
+  uniqueby = unique(by)
+  ylist = list()
+  for(ii in 1:length(unique(CondUnq))){
+    ylist[[ii]] = tibbleyAll %>% filter(CondUnq == unique(CondUnq)[ii]) %>%
+      mutate(distance = y - AverageAll,
+             absdistance = abs(distance),
+             direction = ifelse(distance > 0,1,-1)) %>%
+      arrange(absdistance) %>%
+      group_by(direction) %>%
+      mutate(order = 1:length(y)) %>%
+      arrange(order, direction)
+  }
+  
+  
+  ifequal = tibble()
+  for(rr in 2:min(table(CondUnq))){
+    samplesize = rr
+    testdf = tibble()
+    for(ii in 1:length(ylist)){
+      testdf = bind_rows(tibble(ylist[[ii]] %>% .[1:rr,]),
+                         testdf)
+    }
+    
+    
+    fit = lm(data = testdf, 
+             as.formula(paste0('y~',
+                               paste0(names(bydf) %>% .[-length(bydf)],collapse = '*')))) %>% anova()
+    Fvalue = fit$`F value` %>% .[!is.na(.)]
+    Fvalue = (sum(Fvalue < threshold) == length(Fvalue))*1
+    p = fit$`Pr(>F)` %>% .[!is.na(.)]
+    p = (sum(p > threshold) == length(p))*1
+    ifequal = bind_rows(ifequal,tibble(samplesize, Fvalue, p))
+  }
+  
+  if(type == 'F'){
+    largestsamplesize = ifequal %>% filter(Fvalue == 1) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else if(type == 'p'){
+    largestsamplesize = ifequal %>% filter(p == 1) %>% arrange(-samplesize) %>% .[[1]] %>% .[[1]]
+  }else{
+    print('selecting can only be performed via t value or p value. Please set correct \'type\'')  
+  }
+  
+  yselected = tibble()
+  for(ii in 1:length(ylist)){
+    yselected = bind_rows(yselected,
+                          ylist[[ii]][1:largestsamplesize,])
+  }
+  
+  full_join(tibbleyAll,
+            yselected) %>% arrange(seq) %>%
+    mutate(label = ifelse(is.na(distance), 0,1)) %>% .[['label']]
+}
+
 
