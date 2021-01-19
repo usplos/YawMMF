@@ -112,6 +112,43 @@ This package offers convenient and effective functions for mixed model.
 * `contr.simple()` : to set the contrast matrix of factor variables as simple contrast.
 
 ## Update log
+#### 20210119
+A new fucntion named `matchingvariablegeneralized(y, by, type = 'F', threshold = 1)` has been updated. `matchingvariable()` can find as many obsearved data as possible that are not significantly different between **only two conditions (or within one condition variable with two levels)**.
+However, **sometimes there are more than two levels within one condition variable. In addition, usually there are more than one condition variable**. In these situation, `matchingvariable()` can not satify the users, while `matchingvariablegeneralized()` can.
+
+When using this function, users should set the parameter `by` as a `list` object which include the condition variables of interest.
+
+```
+set.seed(1234)
+y = c(rnorm(100,0),
+      rnorm(120,0.1),
+      rnorm(120,0.2),
+      rnorm(110,0.3),
+      rnorm(110,0.2),
+      rnorm(120,0.4))
+by = cbind(c(rep('A1',340),rep('A2',340)),
+           c(rep('B1',100),rep('B2',120),rep('B3',120),
+             rep('B1',110), rep('B2',110), rep('B3',120)))
+testdf = tibble(y,V1=by[,1],V2=by[,2])
+
+testdf = testdf %>% 
+  mutate(matchingtest = matchingvariablegeneralized(y = y, 
+                                                    by = list(V1,V2), 
+                                                    type = 'F',
+                                                    threshold = 1.5)) %>%
+  filter(matchingtest == 1)
+```
+
+#### 20210117
+A new function named `matchingvalue(y, value, type='t', threshold = 1)` has been updated. This function works in a similar way with `matchingvariable()`. It can find as many obsearved data (set using the parameter `y` in the function) as possible of which the mean is not significantly different with a given value (set using the parameter `value` in the function). 
+
+```
+set.seed(1234)
+y = rnorm(n = 200, mean = 0.5)
+
+matchingvalue(y = y, value, type='t', threshold = 1)
+```
+
 #### 20210107
 A new function named `matchingvariable(y = , by = , type = 't', threshold = 1)` has been updated. It is very common in cognitive experiments that you need two sets of experimental materials that are equal in number and match on a particular attribute. You want to make sure that there is no significant difference between the two groups of materials in the (rating) score for this attribute, and you want to find as many materials as possible that meet this requirement. This function will help you do this efficiently.
 
