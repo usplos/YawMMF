@@ -11,6 +11,8 @@ Effective **M**ixed **M**odel **F**unctions
 
 [![](https://img.shields.io/badge/Follow%20me%20on-Zhihu-blue)](https://www.zhihu.com/people/Psych.ZhangGuangyao/ "Personal profile on Zhihu.com")
 
+<img src="https://github.com/usplos/YawMMF/blob/master/logo.png" width = "100" height = "100" alt="YawMMF logo" align=center />
+
 ## Citation
 Zhang, G., Li, X., & Lin, N. (2020). *YawMMF: Effective Mixed Model Functions*. Available at: https://github.com/usplos/YawMMF.
 
