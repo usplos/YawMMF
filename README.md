@@ -22,6 +22,7 @@ devtools::install_github("usplos/YawMMF")
 
 **If not necessary, do not update the packages suggested to be updated.**
 
+## More information
 For **release notes**, see [`Update log.md`](https://github.com/usplos/YawMMF/blob/master/Update%20log.md);
 
 For **Installation Bugs and Possible Solutions**, see [`Installation Bugs and Possible Solutions.md`](https://github.com/usplos/YawMMF/blob/master/Installation%20Bugs%20and%20Possible%20Solutions.md);
