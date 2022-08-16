@@ -66,13 +66,13 @@ ggViolinPointMeanSE = function(data, cond, Y, Group = NULL, Levels = NULL, Label
   return(p)
 }
 
-ggViolinPointMeanSE(data = DemoData %>% mutate(Cond = paste(CondA, CondB,sep = '')),
-                    cond = 'Cond',
-                    Y = 'DV',
-                    Group = 'subj',
-                    Levels = c('A1B1','A2B1','A1B2','A2B2'),
-                    Labels = c('Condition1','Condition2','Condition3','Condition4'),
-                    colors = c('#aa001a','#d35219','dodgerblue4','dodgerblue3'))
+#ggViolinPointMeanSE(data = DemoData %>% mutate(Cond = paste(CondA, CondB,sep = '')),
+#                    cond = 'Cond',
+#                    Y = 'DV',
+#                    Group = 'subj',
+#                    Levels = c('A1B1','A2B1','A1B2','A2B2'),
+#                    Labels = c('Condition1','Condition2','Condition3','Condition4'),
+#                    colors = c('#aa001a','#d35219','dodgerblue4','dodgerblue3'))
 
 
 
