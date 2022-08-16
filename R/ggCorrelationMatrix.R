@@ -93,23 +93,3 @@ ggCorrelationMatrix = function(data, Arrange = 'full',
 #                     x_lab = NULL,y_lab = NULL,
 #                     x_title = '',y_title = '',legend_title = 'Correlation',
 #                     gridgap = 0.05, value_labeled = T)
-# 
-
-
-
-
-
-
-
-# data = cor(USJudgeRatings)
-# Arrange = 'leftup' # c('full','leftlow','leftup')
-# color_low = 'dodgerblue4'
-# color_mid = 'white'
-# color_high = 'red'
-# midpoint = 0
-# gridgap = .1
-# x_lab = NULL
-# y_lab = NULL
-# x_title = ''
-# y_title = ''
-# legend_title = 'Correlations'
