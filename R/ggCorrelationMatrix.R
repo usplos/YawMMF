@@ -76,7 +76,7 @@ ggCorrelationMatrix = function(data, Arrange = 'full',
           axis.text.y = element_text(size=12, face = 'bold'),
           axis.text.x = element_text(size=12, face = 'bold',angle = 45,vjust = 0.9))
   if(isTRUE(value_labeled)){
-    p = p + geom_text(data = dfp %>% mutate(value2 = round(value,2) %>% as.character(),
+    p = p + geom_text(data = dfp %>% mutate(value2 = round(value,3) %>% as.character(),
                                             value_label = ifelse(value > 0, 
                                                                  substr(value2,2,4),
                                                                  paste0('-',substr(value2,3,5)))),
