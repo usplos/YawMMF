@@ -78,8 +78,8 @@ ggCorrelationMatrix = function(data, Arrange = 'full',
   if(isTRUE(value_labeled)){
     p = p + geom_text(data = dfp %>% mutate(value2 = round(value,3) %>% as.character(),
                                             value_label = ifelse(value > 0, 
-                                                                 substr(value2,2,4),
-                                                                 paste0('-',substr(value2,3,5)))),
+                                                                 substr(value2,2,5),
+                                                                 paste0('-',substr(value2,3,6)))),
                       aes(x = x_p, y = y_p, label = value_label))
   }
   return(p)
